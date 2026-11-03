@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,11 +9,11 @@
 
     <link rel="stylesheet" href="style.css">
 
+    <!-- dialog boxes -->
+    <link rel="stylesheet" href="dialogs.css">
+
     <!-- Font Awesome -->
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-    >
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <script src="script.js" defer></script>
 </head>
@@ -146,11 +145,7 @@
 
                         <i class="fa-solid fa-magnifying-glass"></i>
 
-                        <input
-                            type="search"
-                            id="searchInput"
-                            placeholder="Search tasks"
-                        >
+                        <input type="search" id="searchInput" placeholder="Search tasks">
 
                         <span>⌘ K</span>
 
@@ -202,6 +197,7 @@
                     <div>
                         <h2 id="totalTasks">0</h2>
                         <p>Total tasks</p>
+                        <small class="stat-sub" id="totalSub"></small> <!-- D wz here -->
                     </div>
 
                 </div>
@@ -216,6 +212,7 @@
                     <div>
                         <h2 id="pendingTasks">0</h2>
                         <p>Pending</p>
+                        <small class="stat-sub" id="pendingSub"></small> <!-- D wz here -->
                     </div>
 
                 </div>
@@ -230,6 +227,7 @@
                     <div>
                         <h2 id="completedTasks">0</h2>
                         <p>Completed</p>
+                        <small class="stat-sub" id="completedSub"></small> <!-- D wz here -->
                     </div>
 
                 </div>
@@ -272,21 +270,13 @@
                     <!-- TASK TABS -->
                     <div class="task-tabs">
 
-                        <button
-                            class="tab active"
-                            data-filter="pending"
-                            type="button"
-                        >
+                        <button class="tab active" data-filter="pending" type="button">
                             Pending
                             <span id="pendingCount">0</span>
                         </button>
 
 
-                        <button
-                            class="tab"
-                            data-filter="completed"
-                            type="button"
-                        >
+                        <button class="tab" data-filter="completed" type="button">
                             Completed
                             <span id="completedCount">0</span>
                         </button>
@@ -357,10 +347,7 @@
 
                         <div class="progress-bar">
 
-                            <div
-                                class="progress-fill"
-                                id="progressFill"
-                            ></div>
+                            <div class="progress-fill" id="progressFill"></div>
 
                         </div>
 
@@ -415,5 +402,7 @@
 
     </div>
 
+    <script src="scripts.js"></script>
 </body>
+
 </html>
