@@ -1,0 +1,419 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>JustDoIt - Task Manager</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    >
+
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+
+    <div class="dashboard">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+
+            <div class="logo">
+                <i class="fa-solid fa-list-check"></i>
+                <span>JustDoIt</span>
+            </div>
+
+
+            <!-- NAVIGATION -->
+            <nav class="navigation">
+
+                <div class="nav-links">
+
+                    <a href="#" class="nav-item active" data-view="all">
+                        <i class="fa-solid fa-layer-group"></i>
+                        <span>All tasks</span>
+                        <small id="sidebarTotal">0</small>
+                    </a>
+
+                    <a href="#" class="nav-item" data-view="today">
+                        <i class="fa-regular fa-sun"></i>
+                        <span>Today</span>
+                        <small id="sidebarToday">0</small>
+                    </a>
+
+                    <a href="#" class="nav-item" data-view="upcoming">
+                        <i class="fa-regular fa-calendar"></i>
+                        <span>Upcoming</span>
+                        <small id="sidebarUpcoming">0</small>
+                    </a>
+
+                </div>
+
+
+                <!-- CATEGORIES -->
+                <div class="category-section">
+
+                    <div class="category-heading">
+                        <span>MY CATEGORIES</span>
+                        <i class="fa-solid fa-plus"></i>
+                    </div>
+
+                    <div class="category-list" id="categoryList">
+
+                        <!-- Dynamic categories -->
+
+                        <p class="empty-category">
+                            No categories yet
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <a href="#" class="manage-categories">
+                    <i class="fa-solid fa-gear"></i>
+                    Manage categories
+                </a>
+
+            </nav>
+
+
+            <!-- SIDEBAR BOTTOM -->
+            <div class="sidebar-bottom">
+
+                <div class="quote-card">
+
+                    <i class="fa-regular fa-lightbulb"></i>
+
+                    <h4>Small steps, real progress.</h4>
+
+                    <p>
+                        A clear list makes space for a clearer mind.
+                    </p>
+
+                </div>
+
+
+                <div class="profile">
+
+                    <div class="avatar">AM</div>
+
+                    <div class="profile-info">
+                        <h4>Alex Morgan</h4>
+                        <p>Personal workspace</p>
+                    </div>
+
+                    <i class="fa-solid fa-ellipsis"></i>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+
+
+            <!-- TOP HEADER -->
+            <header class="top-header">
+
+                <div class="breadcrumb">
+
+                    <span>Workspace</span>
+
+                    <i class="fa-solid fa-chevron-right"></i>
+
+                    <strong id="breadcrumbTitle">All tasks</strong>
+
+                </div>
+
+
+                <div class="header-right">
+
+                    <div class="search-box">
+
+                        <i class="fa-solid fa-magnifying-glass"></i>
+
+                        <input
+                            type="search"
+                            id="searchInput"
+                            placeholder="Search tasks"
+                        >
+
+                        <span>⌘ K</span>
+
+                    </div>
+
+                </div>
+
+            </header>
+
+
+
+            <!-- WELCOME SECTION -->
+            <section class="welcome-section">
+
+                <div>
+
+                    <p class="date" id="currentDate"></p>
+
+                    <h1>A little focus, a lighter day.</h1>
+
+                    <p class="welcome-text">
+                        Welcome back, Alex. Organise your tasks and make progress today.
+                    </p>
+
+                </div>
+
+
+                <button class="add-task-btn" id="addTaskBtn" type="button">
+
+                    <i class="fa-solid fa-plus"></i>
+
+                    Add task
+
+                </button>
+
+            </section>
+
+
+
+            <!-- STATISTICS -->
+            <section class="stats-container">
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-layer-group"></i>
+                    </div>
+
+                    <div>
+                        <h2 id="totalTasks">0</h2>
+                        <p>Total tasks</p>
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        <i class="fa-regular fa-circle"></i>
+                    </div>
+
+                    <div>
+                        <h2 id="pendingTasks">0</h2>
+                        <p>Pending</p>
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        <i class="fa-regular fa-circle-check"></i>
+                    </div>
+
+                    <div>
+                        <h2 id="completedTasks">0</h2>
+                        <p>Completed</p>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- DASHBOARD GRID -->
+            <div class="dashboard-grid">
+
+
+                <!-- TASK PANEL -->
+                <section class="task-panel">
+
+
+                    <div class="panel-header">
+
+                        <h3>All tasks</h3>
+
+
+                        <div class="filter">
+
+                            <i class="fa-solid fa-filter"></i>
+
+                            <select id="categoryFilter">
+
+                                <option value="all">
+                                    All categories
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- TASK TABS -->
+                    <div class="task-tabs">
+
+                        <button
+                            class="tab active"
+                            data-filter="pending"
+                            type="button"
+                        >
+                            Pending
+                            <span id="pendingCount">0</span>
+                        </button>
+
+
+                        <button
+                            class="tab"
+                            data-filter="completed"
+                            type="button"
+                        >
+                            Completed
+                            <span id="completedCount">0</span>
+                        </button>
+
+                    </div>
+
+
+
+                    <!-- DYNAMIC TASK CONTAINER -->
+                    <div id="taskContainer">
+
+                        <div class="empty-state">
+
+                            <i class="fa-regular fa-clipboard"></i>
+
+                            <h3>No tasks yet</h3>
+
+                            <p>
+                                Your tasks will appear here once you add them.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- TASK FOOTER -->
+                    <div class="task-footer">
+
+                        <span id="taskFooterCount">
+                            0 pending tasks
+                        </span>
+
+                        <span>
+                            Check a task to mark it complete
+                        </span>
+
+                    </div>
+
+
+                </section>
+
+
+
+                <!-- RIGHT SIDEBAR -->
+                <aside class="right-sidebar">
+
+
+                    <!-- PROGRESS CARD -->
+                    <div class="progress-card">
+
+                        <div class="card-heading">
+
+                            <h4>Your progress</h4>
+
+                            <i class="fa-solid fa-chart-simple"></i>
+
+                        </div>
+
+
+                        <h1 id="progressPercentage">0%</h1>
+
+                        <p id="progressText">
+                            0 of 0 tasks completed
+                        </p>
+
+
+                        <div class="progress-bar">
+
+                            <div
+                                class="progress-fill"
+                                id="progressFill"
+                            ></div>
+
+                        </div>
+
+
+                        <p class="progress-description">
+                            Every checked box is a small win.
+                            Keep going at your own pace.
+                        </p>
+
+                    </div>
+
+
+
+                    <!-- CATEGORY SUMMARY -->
+                    <div class="categories-card">
+
+                        <h4>A place for everything</h4>
+
+
+                        <div id="categorySummary">
+
+                            <p class="empty-category">
+                                Your categories will appear here.
+                            </p>
+
+                        </div>
+
+
+                        <button class="manage-btn" type="button">
+                            Manage categories
+                        </button>
+
+                    </div>
+
+
+
+                    <!-- PRIVACY NOTE -->
+                    <div class="privacy-note">
+
+                        <i class="fa-solid fa-lock"></i>
+
+                        Your space. Your pace.
+
+                    </div>
+
+
+                </aside>
+
+            </div>
+
+        </main>
+
+    </div>
+
+</body>
+</html>
