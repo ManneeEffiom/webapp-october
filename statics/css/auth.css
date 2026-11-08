@@ -1,0 +1,16 @@
+.auth{display:grid;grid-template-columns:1fr 1fr;min-height:100vh}
+.auth-brand{background:#fff;padding:32px 48px;display:flex;flex-direction:column;justify-content:space-between;gap:24px}
+.logo{display:flex;align-items:center;gap:8px;font-size:1.15rem}
+.illustration{display:flex;justify-content:center}
+.auth-brand h2{font-size:2rem;line-height:1.2;margin-bottom:12px}
+.ticks{display:flex;gap:18px;font-size:.8rem}
+.auth-form{background:var(--soft);padding:32px 48px;display:flex;flex-direction:column;justify-content:space-between}
+.switch{text-align:right;margin:0}.switch a{font-weight:600}
+.form-wrap{width:100%;max-width:380px;margin:0 auto}
+.form-wrap h1{font-size:1.6rem;margin-bottom:6px}.form-wrap form{margin-top:22px}
+.pw{position:relative}.pw input{padding-right:40px!important}
+.toggle-pw{position:absolute;right:6px;top:50%;transform:translateY(-50%);background:none;border:0;cursor:pointer}
+.form-wrap .row{margin:4px 0 18px}.form-wrap .btn.full{margin-bottom:18px}
+.footer-row{display:flex;justify-content:space-between;margin:0}
+@media(max-width:800px){.auth{grid-template-columns:1fr}.auth-brand{display:none}.auth-form{padding:24px}}
+.illustration img { max-width: 300px; width: 100%; height: auto; }

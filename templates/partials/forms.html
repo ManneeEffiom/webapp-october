@@ -1,0 +1,17 @@
+{% from "partials/icons.html" import icon %}
+{% macro field(name, label, type='text', errors={}, values={}, hint=None, autocomplete=None, placeholder='') %}
+<div class="field">
+  <label for="{{ name }}">{{ label }}</label>
+  <div class="input-wrap">
+    <input id="{{ name }}" name="{{ name }}" type="{{ type }}" placeholder="{{ placeholder }}"
+           {% if autocomplete %}autocomplete="{{ autocomplete }}"{% endif %}
+           {% if type != 'password' %}value="{{ values.get(name, '') }}"{% endif %}
+           {% if errors.get(name) %}aria-invalid="true"{% endif %}>
+    {% if type == 'password' %}
+    <button type="button" class="input-toggle" data-toggle-password aria-label="Show password">{{ icon('eye-off', 16) }}</button>
+    {% endif %}
+  </div>
+  {% if hint %}<p class="field-hint">{{ hint }}</p>{% endif %}
+  <p class="field-error" data-error-for="{{ name }}">{{ errors.get(name, '') }}</p>
+</div>
+{% endmacro %}

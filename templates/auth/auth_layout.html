@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block css %}<link rel="stylesheet" href="{{ url_for('static', filename='css/auth.css') }}">{% endblock %}
+{% block body %}
+<div class="auth">
+  <section class="auth-brand">
+    <div class="logo"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8l1.5 1.5L12 7M8 14l1.5 1.5L12 13M14 9h3M14 15h3"/></svg> JustDoIt!</div>
+    <div class="illustration">{% block illustration %}{% endblock %}</div>
+    <div>
+      <h2>A little structure.<br>A clearer day.</h2>
+      <p class="muted">Make room for what matters. Keep your tasks, lists, and everyday plans in one calm place.</p>
+      <p class="ticks muted"><span>&#10003; Plan simply</span><span>&#10003; Stay organized</span><span>&#10003; Feel progress</span></p>
+    </div>
+    <p class="muted small">One task at a time. You've got this.</p>
+  </section>
+  <section class="auth-form">
+    <p class="switch small muted">{% block switch %}{% endblock %}</p>
+    <div class="form-wrap">{% block form_panel %}{% endblock %}</div>
+    <p class="muted small footer-row"><span>&copy; 2026 JustDoIt!</span><span>Privacy &nbsp; Help</span></p>
+  </section>
+</div>
+{% endblock %}
+{% block js %}<script src="{{ url_for('static', filename='js/auth.js') }}"></script>{% block page_js %}{% endblock %}{% endblock %}

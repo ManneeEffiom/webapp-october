@@ -1,0 +1,30 @@
+{% extends "auth/auth_layout.html" %}
+{% block title %}Sign in · JustDoIt!{% endblock %}
+{% block illustration %}<img src="{{ url_for('static', filename='images/signin.jpeg') }}" alt="Sign in illustration">{% endblock %}
+{% block switch %}New to JustDoIt? <a href="{{ url_for('auth.signup') }}">Create an account</a>{% endblock %}
+{% block form_panel %}
+<h1>Welcome back</h1>
+<p class="muted small">Sign in to pick up where you left off.</p>
+{% for m in get_flashed_messages() %}<div class="alert ok">{{ m }}</div>{% endfor %}
+{% if errors.form %}<div class="alert err">{{ errors.form }}</div>{% endif %}
+<form id="signin-form" method="post" novalidate>
+  <input type="hidden" name="_csrf" value="{{ csrf_token() }}">
+  <div class="field"><label for="email">Email address</label>
+    <input id="email" name="email" type="email" value="{{ form.get('email','') }}" autocomplete="email">
+    <p class="error">{{ errors.email or '' }}</p></div>
+  <div class="field"><label for="password">Password</label>
+    <div class="pw"><input id="password" name="password" type="password" autocomplete="current-password">
+      <button type="button" class="toggle-pw" aria-label="Show password">&#128065;</button></div>
+    <p class="error">{{ errors.password or '' }}</p></div>
+  <div class="row small">
+    <label class="check">
+      <input type="checkbox" name="remember"
+             {% if request.method == 'GET' or form.get('remember') %}checked{% endif %}>
+      Remember me
+    </label>
+  </div>
+  <button class="btn primary full" type="submit">Sign in</button>
+</form>
+<p class="muted small center">&#128274; Your lists are private and just for you.</p>
+{% endblock %}
+{% block page_js %}<script src="{{ url_for('static', filename='js/signin.js') }}"></script>{% endblock %}

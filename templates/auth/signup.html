@@ -1,0 +1,27 @@
+{% extends "auth/auth_layout.html" %}
+{% block title %}Create account · JustDoIt!{% endblock %}
+{% block illustration %}<img src="{{ url_for('static', filename='images/signup.jpeg') }}" alt="Sign up illustration">{% endblock %}
+{% block switch %}Already have an account? <a href="{{ url_for('auth.signin') }}">Sign in</a>{% endblock %}
+{% block form_panel %}
+<h1>Create your account</h1>
+<p class="muted small">A fresh start for a more organized everyday.</p>
+<form id="signup-form" method="post" novalidate>
+  <input type="hidden" name="_csrf" value="{{ csrf_token() }}">
+  <div class="field"><label for="full_name">Full name</label>
+    <input id="full_name" name="full_name" value="{{ form.get('full_name','') }}" autocomplete="name">
+    <p class="error">{{ errors.full_name or '' }}</p></div>
+  <div class="field"><label for="email">Email address</label>
+    <input id="email" name="email" type="email" value="{{ form.get('email','') }}" autocomplete="email">
+    <p class="error">{{ errors.email or '' }}</p></div>
+  <div class="field"><label for="password">Password</label>
+    <div class="pw"><input id="password" name="password" type="password" autocomplete="new-password">
+      <button type="button" class="toggle-pw" aria-label="Show password">&#128065;</button></div>
+    <p class="hint small muted">Use at least 8 characters, including a number.</p>
+    <p class="error">{{ errors.password or '' }}</p></div>
+  <div class="field"><label class="check small"><input type="checkbox" name="agree" {{ 'checked' if form.get('agree') }}> I agree to the Terms of Service and Privacy Policy.</label>
+    <p class="error">{{ errors.agree or '' }}</p></div>
+  <button class="btn primary full">Create account</button>
+</form>
+<p class="muted small center">&#128274; Your lists are private and just for you.</p>
+{% endblock %}
+{% block page_js %}<script src="{{ url_for('static', filename='js/signup.js') }}"></script>{% endblock %}

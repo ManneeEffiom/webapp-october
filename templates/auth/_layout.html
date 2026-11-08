@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% from "partials/icons.html" import icon %}
+{% block head %}<link rel="stylesheet" href="{{ url_for('static', filename='css/auth.css') }}">{% endblock %}
+{% block content %}
+<div class="auth">
+  <section class="auth__brand">
+<div class="logo"><img class="logo-img" src="{{ url_for('static', filename='images/logo.jpeg') }}" alt=""> JustDoIt!</div>
+    <div class="auth__art">{% block illustration %}{% endblock %}</div>
+    <div class="auth__pitch">
+      <h2>A little structure.<br>A clearer day.</h2>
+      <p>Make room for what matters. Keep your tasks, lists, and everyday plans in one calm place.</p>
+      <ul>
+        <li>{{ icon('check', 13) }} Plan simply</li>
+        <li>{{ icon('check', 13) }} Stay organized</li>
+        <li>{{ icon('check', 13) }} Feel progress</li>
+      </ul>
+    </div>
+    <p class="auth__tag">One task at a time. You've got this.</p>
+  </section>
+
+  <section class="auth__side">
+    <p class="auth__switch">{% block switch %}{% endblock %}</p>
+    <div class="auth__card">
+      {% include "partials/flash.html" %}
+      {% block form %}{% endblock %}
+      <p class="auth__privacy">{{ icon('lock', 12) }} Your lists are private and just for you.</p>
+    </div>
+    <footer class="auth__footer">
+      <span>&copy; 2026 JustDoIt!</span>
+      <span><a href="#">Privacy</a><a href="#">Help</a></span>
+    </footer>
+  </section>
+</div>
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/auth/common.js') }}"></script>{% block auth_scripts %}{% endblock %}{% endblock %}

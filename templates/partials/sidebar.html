@@ -1,0 +1,26 @@
+{% from "partials/icons.html" import icon %}
+<aside class="sidebar">
+  <div class="logo">{{ icon('logo', 26) }}<span>JustDoIt!</span></div>
+  <nav class="nav">
+    <a class="nav__item is-active" href="#">{{ icon('layers') }}<span>All tasks</span><em>{{ stats.total }}</em></a>
+    <a class="nav__item" href="#">{{ icon('sun') }}<span>Today</span><em>{{ stats.today }}</em></a>
+    <a class="nav__item" href="#">{{ icon('calendar') }}<span>Upcoming</span><em>{{ stats.upcoming }}</em></a>
+  </nav>
+  <div class="nav__head"><span>MY CATEGORIES</span>
+    <button class="icon-btn" data-open-add-category aria-label="Add category">{{ icon('plus', 14) }}</button></div>
+  <nav class="nav">
+    {% for c in categories %}
+    <a class="nav__item" href="#"><span class="dot" style="--dot: {{ c.color }}"></span><span>{{ c.name }}</span><em>{{ c.total }}</em></a>
+    {% else %}<p class="muted nav__empty">No categories yet.</p>{% endfor %}
+    <button class="nav__item nav__button" data-open-manage>{{ icon('sliders') }}<span>Manage categories</span></button>
+  </nav>
+  <div class="tip"><strong>Small steps, real progress.</strong><p>A clear list makes space for a clearer mind.</p></div>
+  <div class="user">
+    <span class="avatar">{{ initials }}</span>
+    <div><strong>{{ session.full_name }}</strong><p>Personal workspace</p></div>
+    <form method="post" action="{{ url_for('auth.signout') }}">
+      <input type="hidden" name="_csrf" value="{{ csrf_token() }}">
+      <button class="icon-btn" aria-label="Sign out">{{ icon('logout', 16) }}</button>
+    </form>
+  </div>
+</aside>
